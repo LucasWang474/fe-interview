@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body></body>
+
+  <script>
+    const API = "https://api.github.com/users/LucasWang474";
+
+    fetch(API)
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+
+    // 初始化
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", API);
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState !== 4) return;
+
+      if (this.status === 200) {
+        console.log(">>> this.response", this.response);
+      } else {
+        console.error(this.statusText);
+      }
+    };
+
+    xhr.onerror = function () {
+      console.error(this.statusText);
+    };
+
+    // 设置返回类型
+    xhr.responseType = "json";
+
+    // 设置请求参数类型
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.send(null);
+  </script>
+</html>
