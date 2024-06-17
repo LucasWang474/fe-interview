@@ -1,12 +1,12 @@
-function call(func, newThis, ...args) {
-  if (newThis === undefined || newThis === null) {
-    newThis = globalThis;
+function call(func, thisArg, ...args) {
+  if (thisArg === undefined || thisArg === null) {
+    thisArg = globalThis;
   }
 
   const TEMP_FUNC = Symbol("temp func");
-  newThis[TEMP_FUNC] = func;
-  const res = newThis[TEMP_FUNC](...args);
-  delete newThis[TEMP_FUNC];
+  thisArg[TEMP_FUNC] = func;
+  const res = thisArg[TEMP_FUNC](...args);
+  delete thisArg[TEMP_FUNC];
 
   return res;
 }
